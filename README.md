@@ -4,10 +4,6 @@ This script is used to pull all of the open items from every STIG checklist in a
 
 
 
-
-
-
-
 REQUIREMENTS:
 - STIG .ckl files (preferably more recent than not)
 - Powershell
