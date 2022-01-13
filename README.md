@@ -1,5 +1,5 @@
 # Create-POAMs-From-All-Open-Items-In-STIG-Checklist-Directory
-This script is used to pull all of the open items from every STIG checklist in a directory, and output them to a DFARS compliant templated POA&M (Plan of Action and Milestone) .csv file
+This script is used to pull all of the open items from every STIG checklist in a directory, and output them to a DFARS compliant templated POA&M (Plan of Action and Milestone) .csv file. All output results will be unique for each different type of STIG, and there will be no duplicated 'open' vulnerabilities.
 
 REQUIREMENTS:
 - STIG .ckl files (preferably more recent than not)
