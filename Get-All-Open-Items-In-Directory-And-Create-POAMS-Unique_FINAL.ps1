@@ -104,7 +104,7 @@ $Allobjects += New-Object PSObject -Property @{
 
 CVD = $RuleTitle
 SCN = $CCIRef
-Office = "66 ABG/SCOO"
+Office = ""
 Security = $RuleID
 Resources = ""
 Scheduled = $ECDDate
