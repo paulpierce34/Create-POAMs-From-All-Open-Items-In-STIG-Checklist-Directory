@@ -15,12 +15,9 @@
 
 $DirectoryofChecklists = "" ## Change this value to the Directory you would like to run this script in. 
 
-
 $OutputPath = "C:\Temp\" ## Output PATH (do not include filename or .csv extension)
 
-
 $Outfilename = "Networking.csv"   ## Filename and .csv  IF you are only generating one file (you will be prompted)
-
 
 ## END MAKE CHANGES SECTION ####
 
@@ -43,7 +40,6 @@ $VulnStatus = "Open"
 
 [string]$ECDDate = (get-date).AddDays(90).ToSTring('MM-dd-yyyy')
 
-
 cd $DirectoryofChecklists
 
 $Allitems = Get-childitem -Path $DirectoryofChecklists -Filter *.ckl -Name
@@ -60,8 +56,6 @@ foreach ($CKL in $Allitems){
 write-host -Foregroundcolor Cyan "Working on $CKL..."
 
 [XML]$CKLdata = Get-Content $CKL # Convert file to XML object
-
-
 
 $Eachvuln = $CKLData.Checklist.STIGs.iSTIG.VULN ## Grab each vulnerability from XML .ckl file and store in variable. We do this so we can access the 'Status' property to determine Open items.
 
@@ -125,27 +119,16 @@ ResidRisk = $ImpactSevere
 
 } ## end property builder object
 
-
-
-
 } ## end if status equals open
 
 } ## end inner foreach
 
-
-
-
 }
-
-
-
 
 
 # $AllObjects | Select-Object -Property CVD, SCN, Office, Security, Resources, Scheduled, Milestone, MilestoneTwo, Source, status, Comment, RawSeverity, Mitigation, Severity, Relevance, Likelihood, Impact, ImpactDesc, ResidRisk | sort-object -Property CVD, SCN, Office, Security, Resources, Scheduled, Milestone, MilestoneTwo, Source, status, Comment, RawSeverity, Mitigation, Severity, Relevance, Likelihood, Impact, ImpactDesc, ResidRisk | Export-csv -Path $FinalDestination -Append -NoTypeInformation
 
   ## end foreach different checklist
-
-
 
 if ($NumerousOutput -match "Yes" -or $NumerousOutput -match "y"){
 
@@ -160,27 +143,18 @@ $Stigformat7 = $Stigformat6.Replace(",", "")
 
 $FinalDestination = $OutputPath + "POAM_" + $Stigformat7 + ".csv"
 
-
 $AllObjects | Group-Object -Property Source | Foreach-Object {
-
-
 
 $path = $OutputPath + "\" + "POAM-" + $_.name.Replace(":", "").Replace("/", "") + ".csv" 
 
 $_.group | Sort-Object -Unique CVD | Select-Object -Property CVD, SCN, Office, Security, Resources, Scheduled, Milestone, MilestoneTwo, Source, status, Comment, RawSeverity, Mitigation, Severity, Relevance, Likelihood, Impact, ImpactDesc, ResidRisk | sort-object -Property CVD, SCN, Office, Security, Resources, Scheduled, Milestone, MilestoneTwo, Source, status, Comment, RawSeverity, Mitigation, Severity, Relevance, Likelihood, Impact, ImpactDesc, ResidRisk |  Export-Csv -Path $path -NoTypeInformation -Append
 
-
 }
-
 }
-
-
-
 
 if ($NumerousOutput -match "No" -or $NumerousOutput -match "n"){
 
 $FinalDestination = $OutputPath + "\" + $Outfilename
-
 
 $AllObjects | Sort-Object -Unique CVD | Select-Object -Property CVD, SCN, Office, Security, Resources, Scheduled, Milestone, MilestoneTwo, Source, status, Comment, RawSeverity, Mitigation, Severity, Relevance, Likelihood, Impact, ImpactDesc, ResidRisk | sort-object -Property CVD, SCN, Office, Security, Resources, Scheduled, Milestone, MilestoneTwo, Source, status, Comment, RawSeverity, Mitigation, Severity, Relevance, Likelihood, Impact, ImpactDesc, ResidRisk | Export-csv -Path $FinalDestination -Append -NoTypeInformation
 
