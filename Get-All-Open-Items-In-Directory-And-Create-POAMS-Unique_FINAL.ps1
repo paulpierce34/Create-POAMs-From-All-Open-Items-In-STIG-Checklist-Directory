@@ -1,24 +1,20 @@
 ﻿## AUTHOR / TIMESTAMP:
-## JLD
+## JL
 
 ## PURPOSE:
-
 ### THE Purpose of this script is to take all open items from a directory of checklists, and then create an output file that can be copied/pasted into a POAM templated file to create a POAM for all open items.
 
 ## HOW TO USE:
-
 ## Run this script in a directory of checklists that needs POAMs created. Output file will be created in your chosen destination ($OutputPath)
 ## Copy everything besides the headers from the output file to a POAM templated file. Re-format POAM file to look nice. Done.
 
 
 ## MAKE CHANGES HERE SECTION ####
-
 $DirectoryofChecklists = "" ## Change this value to the Directory you would like to run this script in. 
 
 $OutputPath = "C:\Temp\" ## Output PATH (do not include filename or .csv extension)
 
 $Outfilename = "Networking.csv"   ## Filename and .csv  IF you are only generating one file (you will be prompted)
-
 ## END MAKE CHANGES SECTION ####
 
 
@@ -31,7 +27,7 @@ $Outfilename = "Networking.csv"   ## Filename and .csv  IF you are only generati
 
 
 
-$VulnStatus = "Open"
+$VulnStatus = "Open" ## Status to look for; by default 'Open' as that is what people seek for POA&Ms obviously. Valid values: NotAFinding, Not_Applicable, Open
 
 
 
